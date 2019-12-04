@@ -26,7 +26,7 @@ The goals of this schema are as follows:
 
 ### Reservoir
 
-[Schema](/str8d8a/totality/blob/master/schemas/reservoir.schema.json)
+[Schema](str8d8a/totality/blob/master/schemas/reservoir.schema.json)
 
 All containers that hold an economically valuable material or materials at any stage in a supply chain, from raw material to finished product ready for distribution and sale. Note that the materials in question include both matter, at all stages of processing and refinement, and energy in any useful and recoverable form.
 
