@@ -2,13 +2,13 @@
 
 > The peculiar character of the problem of a rational economic order is determined precisely by the fact that the knowledge of the circumstances of which we must make use never exists in concentrated or integrated form...it is a problem of the utilization of knowledge which is not given to anyone in its totality.
 
-— Hayek, "The Use of Knowledge in Society"
+— Hayek, ["The Use of Knowledge in Society"](https://www.econlib.org/library/Essays/hykKnw.html)
 
 Challenge accepted.
 
 ## Goals
 
-This repository contains schemas that collectively document entities that underlie the global economy of all goods, as well as the energy system that underlies it.
+This repository contains json schema definitions that collectively document entities that underlie the global economy of all goods, as well as the energy system that underlies it.
 
 The goals of this schema are as follows:
 
