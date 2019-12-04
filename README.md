@@ -26,22 +26,22 @@ The goals of this schema are as follows:
 
 ### Reservoir
 
-[Schema](reservoir.schema.json)
+[Schema](/str8d8a/totality/blob/master/schemas/reservoir.schema.json)
 
 All containers that hold an economically valuable material or materials at any stage in a supply chain, from raw material to finished product ready for distribution and sale. Note that the materials in question include both matter, at all stages of processing and refinement, and energy in any useful and recoverable form.
 
 ### Facility
 
-[Schema](schemas/facility.schema.json)
+[Schema](/str8d8a/totality/blob/master/schemas/facility.schema.json)
 
 ### Conveyance
 
-[Schema](schemas/conveyance.schema.json)
+[Schema](/str8d8a/totality/blob/master/schemas/conveyance.schema.json)
 
 All specific and individual means by which goods are transported from one location to another. This includes the well-known multimodal container transport system, bulk shipment of commodities, pipelines, and electricity transmission and distribution lines.
 
 ### Observation
 
-[Schema](schemas/observtion.schema.json)
+[Schema](/str8d8a/totality/blob/master/schemas/observation.schema.json)
 
 A core tenet of this publishing standard is the idea that the information submitted is not factual, but rather of uncertain status. Data submitted is therefore always enclosed in an observation, which includes information about the source and means of collection. This standard does not prescribe the principles or methods by which these uncertainties should be resolved, nor how potentially conflicting observations should be reconciled.
