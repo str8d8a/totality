@@ -1,0 +1,79 @@
+{
+    "definitions": {
+        "length": {
+            "description": "A linear extent",
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "type": "string",
+                    "enum": ["m", "km", "ft", "mi", "nm"]
+                },
+                "amount": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "volume": {
+            "description": "A volumetric quantity",
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "type": "string",
+                    "enum": ["L", "cu m", "ae-ft", "gal", "cu ft", "bbl"]
+                },
+                "amount": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "mass": {
+            "description": "A measure of mass",
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "type": "string",
+                    "enum": ["g", "kg", "t", "lb"]
+                },
+                "amount": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "speed": {
+            "description": "A rate of travel",
+            "type": "object",
+            "properties": {
+                "unit": {
+                    "type": "string",
+                    "enum": ["mph", "kph", "knots", "m/s"]
+                },
+                "amount": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "direction": {
+            "description": "A heading of travel",
+            "type": "object",
+            "properties": {
+
+            }
+        },
+        "velocity": {
+            "description": "A rate and direction of travel",
+            "type": "object",
+            "properties": {
+                "speed": {
+                    "$ref": "#/definitions/speed"
+                },
+                "direction": {
+                    "$ref": "#/definitions/direction"
+                }
+            }
+        }
+    }
+}

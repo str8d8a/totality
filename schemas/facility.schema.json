@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://str8d8a.info/facility.schema.json",
+    "title": "Facility",
+    "description": "",
+    "type": "object",
+    "properties": {
+        "location": {
+            "description": "The location where the reservoir is situated or installed",
+            "$ref": "https://geojson.org/schema/Feature.json"
+        },
+        "capabilities": {
+            "description": "A list of the facility's capabilities to transform inputs into outputs"
+        },
+        "throughputs": {
+            "description": "A list of the rates at which the facility can process various items",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "unit": {
+                        "type": "object",
+                        "oneOf": [{
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "item": {
+                                        "type": "string"
+                                    },
+                                    "period": {
+                                        "type": "string",
+                                        "enum": ["μs", "ms", "s", "min", "day", "week", "month", "quarter", "year", "decade"]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
