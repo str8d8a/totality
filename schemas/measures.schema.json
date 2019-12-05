@@ -74,6 +74,22 @@
                     "$ref": "#/definitions/direction"
                 }
             }
+        },
+        "point": {
+            "description": "A point on Earth defined by latitude and longitude",
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number",
+                    "minimum": -90,
+                    "maximum": 90
+                },
+                "longitude": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                }
+            }
         }
     }
 }

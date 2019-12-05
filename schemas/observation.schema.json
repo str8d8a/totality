@@ -25,7 +25,8 @@
                         "format": "date-time"
                     },
                     "location": {
-                        "type": "object"
+                        "type": "object",
+                        "$ref": "measures.schema.json#/definitions/point"
                     },
                     "data": {
                         "oneOf": [{
