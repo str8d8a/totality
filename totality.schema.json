@@ -33,14 +33,30 @@
           "type": "string",
           "enum": [
             "eye",
+            "web",
             "camera",
-            "transponder"
+            "microphone",
+            "transponder",
+            "lidar"
           ]
         },
-        "person": {
+        "platform": {
+          "description": "The mounting point of the sensory system used to collect the observation",
           "type": "string",
           "enum": [
             "direct",
+            "handheld",
+            "stationary",
+            "terrestrial vehicle vehicle",
+            "aerial",
+            "orbital"
+          ]
+        },
+        "identity": {
+          "description": "The relationship of the submitter of this observation to the data collection",
+          "type": "string",
+          "enum": [
+            "self",
             "3rdparty"
           ]
         },
@@ -48,7 +64,8 @@
           "type": "string",
           "enum": [
             "human",
-            "machine"
+            "standard-based",
+            "algorithmic"
           ]
         }
       }
@@ -84,7 +101,7 @@
             }
           },
           "data": {
-            "oneOf": [
+            "anyOf": [
               {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "$id": "http://str8d8a.info/conveyance.schema.json",
@@ -98,6 +115,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -256,6 +274,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -312,6 +331,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -460,6 +480,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -540,6 +561,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -698,6 +720,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -754,6 +777,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -902,6 +926,7 @@
                     "type": "object",
                     "additionalProperties": false,
                     "required": [
+                      "observableType",
                       "conveyanceType"
                     ],
                     "properties": {
@@ -983,13 +1008,16 @@
                 "description": "",
                 "type": "object",
                 "additionalProperties": false,
+                "required": [
+                  "observableType"
+                ],
                 "properties": {
                   "observableType": {
                     "type": "string",
                     "pattern": "^facility$"
                   },
                   "location": {
-                    "description": "The location where the reservoir is situated or installed",
+                    "description": "The location where the facility is situated or installed",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "$id": "https://geojson.org/schema/Feature.json",
                     "title": "GeoJSON Feature",
@@ -1539,6 +1567,9 @@
                 "description": "A physical container that can hold a quantity of one or more materials, as installed at a location and intended for one or more uses. Reservoirs can store matter, energy, or both",
                 "type": "object",
                 "additionalProperties": false,
+                "required": [
+                  "observableType"
+                ],
                 "properties": {
                   "observableType": {
                     "type": "string",
@@ -2320,14 +2351,30 @@
           "type": "string",
           "enum": [
             "eye",
+            "web",
             "camera",
-            "transponder"
+            "microphone",
+            "transponder",
+            "lidar"
           ]
         },
-        "person": {
+        "platform": {
+          "description": "The mounting point of the sensory system used to collect the observation",
           "type": "string",
           "enum": [
             "direct",
+            "handheld",
+            "stationary",
+            "terrestrial vehicle vehicle",
+            "aerial",
+            "orbital"
+          ]
+        },
+        "identity": {
+          "description": "The relationship of the submitter of this observation to the data collection",
+          "type": "string",
+          "enum": [
+            "self",
             "3rdparty"
           ]
         },
@@ -2335,7 +2382,8 @@
           "type": "string",
           "enum": [
             "human",
-            "machine"
+            "standard-based",
+            "algorithmic"
           ]
         }
       }

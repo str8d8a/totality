@@ -5,6 +5,7 @@
     "description": "A physical container that can hold a quantity of one or more materials, as installed at a location and intended for one or more uses. Reservoirs can store matter, energy, or both",
     "type": "object",
     "additionalProperties": false,
+    "required": ["observableType"],
     "properties": {
         "observableType": {
             "type": "string",

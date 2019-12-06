@@ -5,13 +5,14 @@
     "description": "",
     "type": "object",
     "additionalProperties": false,
+    "required": ["observableType"],
     "properties": {
         "observableType": {
             "type": "string",
             "pattern": "^facility$"
         },
         "location": {
-            "description": "The location where the reservoir is situated or installed",
+            "description": "The location where the facility is situated or installed",
             "$ref": "https://geojson.org/schema/Feature.json"
         },
         "capabilities": {

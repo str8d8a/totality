@@ -19,7 +19,7 @@
             "description": ":",
             "type": "object",
             "additionalProperties": false,
-            "required": ["conveyanceType"],
+            "required": ["observableType", "conveyanceType"],
             "properties": {
                 "observableType": {
                     "type": "string",
@@ -97,7 +97,7 @@
             "description": ":",
             "type": "object",
             "additionalProperties": false,
-            "required": ["conveyanceType"],
+            "required": ["observableType", "conveyanceType"],
             "properties": {
                 "observableType": {
                     "type": "string",
@@ -151,7 +151,7 @@
             "description": ":",
             "type": "object",
             "additionalProperties": false,
-            "required": ["conveyanceType"],
+            "required": ["observableType", "conveyanceType"],
             "properties": {
                 "observableType": {
                     "type": "string",
@@ -230,7 +230,7 @@
             "description": ":",
             "type": "object",
             "additionalProperties": false,
-            "required": ["conveyanceType"],
+            "required": ["observableType", "conveyanceType"],
             "properties": {
                 "observableType": {
                     "type": "string",
