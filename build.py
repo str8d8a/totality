@@ -11,7 +11,7 @@ def load_file(fn):
         return s
 
 def resolve(uri, cur):
-    """Resolve a reference. Currently assumes a local file, not a remote url."""
+    """Resolve a reference, assuming a relative local path if not a http url"""
     parts = uri.split('#')
     base = parts[0]
     if len(parts) == 1:
