@@ -30,6 +30,7 @@
                     "pattern": "^airplane$"
                 },
                 "model": {
+                    "description": "Properties that describe the model of aircraft, and that are shared by all aircraft of the same model",
                     "type": "object",
                     "properties": {
                         "manufacturer": {
@@ -58,6 +59,7 @@
                     }
                 },
                 "airframe": {
+                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
                     "type": "object",
                     "properties": {
                         "serial": {
@@ -73,6 +75,7 @@
                     }
                 },
                 "operation": {
+                    "description": "Properties that describe the current ownership, operation, and licensing of the aircraft",
                     "type": "object",
                     "properties": {
                         "operator": {
@@ -108,6 +111,7 @@
                     "pattern": "^locomotive$"
                 },
                 "model": {
+                    "description": "Properties that describe the model of locomotive, and that are shared by all locomotives of the same model",
                     "type": "object",
                     "properties": {
                         "manufacturer": {
@@ -122,6 +126,7 @@
                     }
                 },
                 "engine": {
+                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
                     "type": "object",
                     "properties": {
                         "serial": {
@@ -134,6 +139,7 @@
                     }
                 },
                 "operation": {
+                    "description": "Properties that describe the current ownership, operation, and licensing of the locomotive",
                     "type": "object",
                     "properties": {
                         "railroad": {
@@ -162,6 +168,7 @@
                     "pattern": "^ship$"
                 },
                 "hull": {
+                    "description": "Properties that describe the particular vessel, and which do not change with new ownership",
                     "type": "object",
                     "properties": {
                         "imo": {
@@ -200,6 +207,7 @@
                     }
                 },
                 "operation": {
+                    "description": "Properties that describe the current ownership, operation, and licensing of the vessel",
                     "type": "object",
                     "properties": {
                         "manager": {
@@ -241,6 +249,7 @@
                     "pattern": "^hauler$"
                 },
                 "model": {
+                    "description": "Properties that describe the model of vehicle, and that are shared by all vehicles of the same model",
                     "type": "object",
                     "properties": {
                         "manufacturer": {
@@ -258,6 +267,7 @@
                     }
                 },
                 "chassis": {
+                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
                     "type": "object",
                     "properties": {
                         "serial": {
@@ -274,6 +284,7 @@
                     }
                 },
                 "operation": {
+                    "description": "Properties that describe the current ownership, operation, and licensing of the vehicle",
                     "type": "object",
                     "properties": {
                         "operator": {
