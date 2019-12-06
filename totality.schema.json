@@ -1,0 +1,2344 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "observation",
+  "description": "A document describing the observation of one or more items, by a particular observer using a specified method. In epistemic terms, the submission of this document is an attestation that the items are as described, and the reliability of this attestation is a function of various factors.\n\nThe `observer`, `method`, and `items` properties are all required for the observation document to be valid.",
+  "type": "object",
+  "required": [
+    "observer",
+    "method",
+    "items"
+  ],
+  "properties": {
+    "observer": {
+      "type": "object",
+      "title": "observer",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "method": {
+      "type": "object",
+      "title": "observation method",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "eye",
+            "camera",
+            "transponder"
+          ]
+        },
+        "person": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "3rdparty"
+          ]
+        },
+        "encoding": {
+          "type": "string",
+          "enum": [
+            "human",
+            "machine"
+          ]
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "time",
+          "location",
+          "data"
+        ],
+        "properties": {
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "object",
+            "description": "A point on Earth defined by latitude and longitude",
+            "properties": {
+              "latitude": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90
+              },
+              "longitude": {
+                "type": "number",
+                "minimum": -180,
+                "maximum": 180
+              }
+            }
+          },
+          "data": {
+            "oneOf": [
+              {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "$id": "http://str8d8a.info/conveyance.schema.json",
+                "title": "conveyance",
+                "description": "A means of transporting materials, either matter or energy, from one location to another",
+                "type": "object",
+                "oneOf": [
+                  {
+                    "title": "airplane",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^airplane$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string",
+                            "enum": [
+                              "Boeing",
+                              "Airbus",
+                              "McDonnel Douglas",
+                              "Embraer",
+                              "Bombardier",
+                              "Canadair",
+                              "ATR",
+                              "Cessna",
+                              "Sukhoi",
+                              "Other"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "enum": [
+                              "B727",
+                              "B737",
+                              "B747",
+                              "B757",
+                              "B767",
+                              "B777",
+                              "B787",
+                              "A300",
+                              "A319",
+                              "A320",
+                              "A321",
+                              "A330",
+                              "A340",
+                              "A350",
+                              "A380"
+                            ]
+                          },
+                          "typeCode": {
+                            "type": "string",
+                            "enum": [
+                              "A20N",
+                              "A21N",
+                              "A306",
+                              "A318",
+                              "A319",
+                              "A320",
+                              "A321",
+                              "A332",
+                              "A333",
+                              "A343",
+                              "A359",
+                              "A35K",
+                              "A388",
+                              "AT43",
+                              "AT46",
+                              "AT75",
+                              "AT76",
+                              "B190",
+                              "B37M",
+                              "B38M",
+                              "B39M",
+                              "B734",
+                              "B736",
+                              "B737",
+                              "B738",
+                              "B739",
+                              "B744",
+                              "B748",
+                              "B752",
+                              "B753",
+                              "B763",
+                              "B764",
+                              "B772",
+                              "B77L",
+                              "B77W",
+                              "B788",
+                              "B789",
+                              "B78X",
+                              "C208",
+                              "CRJ1",
+                              "CRJ2",
+                              "CRJ7",
+                              "CRJX",
+                              "D328",
+                              "DC10",
+                              "DH8A",
+                              "DH8B",
+                              "DH8C",
+                              "DH8D",
+                              "E145",
+                              "E170",
+                              "E190",
+                              "E45X",
+                              "E75L",
+                              "E75S",
+                              "FA7X",
+                              "GL4F",
+                              "J328",
+                              "MD11",
+                              "SF34",
+                              "SU95"
+                            ]
+                          }
+                        }
+                      },
+                      "airframe": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "lineNumber": {
+                            "type": "string"
+                          },
+                          "firstFlightDate": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "operator": {
+                            "type": "string"
+                          },
+                          "airline": {
+                            "type": "string"
+                          },
+                          "deliveryDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "registration": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "locomotive",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^locomotive$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "family": {
+                            "type": "string"
+                          },
+                          "typeCode": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "engine": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "serviceDate": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "railroad": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "ship",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^ship$"
+                      },
+                      "hull": {
+                        "type": "object",
+                        "properties": {
+                          "imo": {
+                            "type": "string",
+                            "pattern": "^[0-9]{7}$"
+                          },
+                          "yearBuilt": {
+                            "type": "string",
+                            "pattern": "^[0-9]{4}$"
+                          },
+                          "builder": {
+                            "type": "string"
+                          },
+                          "vesselType": {
+                            "type": "string",
+                            "enum": [
+                              "cargo ship",
+                              "ore carrier",
+                              "oil tanker",
+                              "bulk carrier",
+                              "fishing",
+                              "heavy lift"
+                            ]
+                          },
+                          "length": {
+                            "type": "object",
+                            "description": "A linear extent",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "m",
+                                  "km",
+                                  "ft",
+                                  "mi",
+                                  "nm"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "width": {
+                            "type": "object",
+                            "description": "A linear extent",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "m",
+                                  "km",
+                                  "ft",
+                                  "mi",
+                                  "nm"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "deadWeight": {
+                            "type": "object",
+                            "description": "A measure of mass",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "g",
+                                  "kg",
+                                  "t",
+                                  "lb"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "grossTonnage": {
+                            "type": "object",
+                            "description": "A measure of mass",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "g",
+                                  "kg",
+                                  "t",
+                                  "lb"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "manager": {
+                            "type": "string"
+                          },
+                          "owner": {
+                            "type": "string"
+                          },
+                          "AISName": {
+                            "type": "string"
+                          },
+                          "MMSI": {
+                            "type": "string",
+                            "pattern": "^[0-9]{9}$"
+                          },
+                          "callSign": {
+                            "type": "string"
+                          },
+                          "flag": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "title": "hauler",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^hauler$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "model": {
+                            "type": "string"
+                          },
+                          "driveTrain": {
+                            "type": "string",
+                            "enum": [
+                              "diesel",
+                              "battery electric",
+                              "gasoline",
+                              "natural gas",
+                              "hydrogen fuel cell"
+                            ]
+                          }
+                        }
+                      },
+                      "chassis": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "serviceDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "style": {
+                            "type": "string",
+                            "enum": [
+                              "flat",
+                              "box",
+                              "open",
+                              "dump",
+                              "tank",
+                              "waste",
+                              "tractor"
+                            ]
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "operator": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "type": "string"
+                          },
+                          "numberPlate": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                ],
+                "definitions": {
+                  "airplane": {
+                    "title": "airplane",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^airplane$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string",
+                            "enum": [
+                              "Boeing",
+                              "Airbus",
+                              "McDonnel Douglas",
+                              "Embraer",
+                              "Bombardier",
+                              "Canadair",
+                              "ATR",
+                              "Cessna",
+                              "Sukhoi",
+                              "Other"
+                            ]
+                          },
+                          "family": {
+                            "type": "string",
+                            "enum": [
+                              "B727",
+                              "B737",
+                              "B747",
+                              "B757",
+                              "B767",
+                              "B777",
+                              "B787",
+                              "A300",
+                              "A319",
+                              "A320",
+                              "A321",
+                              "A330",
+                              "A340",
+                              "A350",
+                              "A380"
+                            ]
+                          },
+                          "typeCode": {
+                            "type": "string",
+                            "enum": [
+                              "A20N",
+                              "A21N",
+                              "A306",
+                              "A318",
+                              "A319",
+                              "A320",
+                              "A321",
+                              "A332",
+                              "A333",
+                              "A343",
+                              "A359",
+                              "A35K",
+                              "A388",
+                              "AT43",
+                              "AT46",
+                              "AT75",
+                              "AT76",
+                              "B190",
+                              "B37M",
+                              "B38M",
+                              "B39M",
+                              "B734",
+                              "B736",
+                              "B737",
+                              "B738",
+                              "B739",
+                              "B744",
+                              "B748",
+                              "B752",
+                              "B753",
+                              "B763",
+                              "B764",
+                              "B772",
+                              "B77L",
+                              "B77W",
+                              "B788",
+                              "B789",
+                              "B78X",
+                              "C208",
+                              "CRJ1",
+                              "CRJ2",
+                              "CRJ7",
+                              "CRJX",
+                              "D328",
+                              "DC10",
+                              "DH8A",
+                              "DH8B",
+                              "DH8C",
+                              "DH8D",
+                              "E145",
+                              "E170",
+                              "E190",
+                              "E45X",
+                              "E75L",
+                              "E75S",
+                              "FA7X",
+                              "GL4F",
+                              "J328",
+                              "MD11",
+                              "SF34",
+                              "SU95"
+                            ]
+                          }
+                        }
+                      },
+                      "airframe": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "lineNumber": {
+                            "type": "string"
+                          },
+                          "firstFlightDate": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "operator": {
+                            "type": "string"
+                          },
+                          "airline": {
+                            "type": "string"
+                          },
+                          "deliveryDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "registration": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "locomotive": {
+                    "title": "locomotive",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^locomotive$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "family": {
+                            "type": "string"
+                          },
+                          "typeCode": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "engine": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "serviceDate": {
+                            "type": "string",
+                            "format": "date"
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "railroad": {
+                            "type": "string"
+                          },
+                          "number": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ship": {
+                    "title": "ship",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^ship$"
+                      },
+                      "hull": {
+                        "type": "object",
+                        "properties": {
+                          "imo": {
+                            "type": "string",
+                            "pattern": "^[0-9]{7}$"
+                          },
+                          "yearBuilt": {
+                            "type": "string",
+                            "pattern": "^[0-9]{4}$"
+                          },
+                          "builder": {
+                            "type": "string"
+                          },
+                          "vesselType": {
+                            "type": "string",
+                            "enum": [
+                              "cargo ship",
+                              "ore carrier",
+                              "oil tanker",
+                              "bulk carrier",
+                              "fishing",
+                              "heavy lift"
+                            ]
+                          },
+                          "length": {
+                            "type": "object",
+                            "description": "A linear extent",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "m",
+                                  "km",
+                                  "ft",
+                                  "mi",
+                                  "nm"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "width": {
+                            "type": "object",
+                            "description": "A linear extent",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "m",
+                                  "km",
+                                  "ft",
+                                  "mi",
+                                  "nm"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "deadWeight": {
+                            "type": "object",
+                            "description": "A measure of mass",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "g",
+                                  "kg",
+                                  "t",
+                                  "lb"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          },
+                          "grossTonnage": {
+                            "type": "object",
+                            "description": "A measure of mass",
+                            "properties": {
+                              "unit": {
+                                "type": "string",
+                                "enum": [
+                                  "g",
+                                  "kg",
+                                  "t",
+                                  "lb"
+                                ]
+                              },
+                              "amount": {
+                                "type": "number",
+                                "minimum": 0
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "manager": {
+                            "type": "string"
+                          },
+                          "owner": {
+                            "type": "string"
+                          },
+                          "AISName": {
+                            "type": "string"
+                          },
+                          "MMSI": {
+                            "type": "string",
+                            "pattern": "^[0-9]{9}$"
+                          },
+                          "callSign": {
+                            "type": "string"
+                          },
+                          "flag": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "hauler": {
+                    "title": "hauler",
+                    "description": ":",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "conveyanceType"
+                    ],
+                    "properties": {
+                      "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                      },
+                      "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^hauler$"
+                      },
+                      "model": {
+                        "type": "object",
+                        "properties": {
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "model": {
+                            "type": "string"
+                          },
+                          "driveTrain": {
+                            "type": "string",
+                            "enum": [
+                              "diesel",
+                              "battery electric",
+                              "gasoline",
+                              "natural gas",
+                              "hydrogen fuel cell"
+                            ]
+                          }
+                        }
+                      },
+                      "chassis": {
+                        "type": "object",
+                        "properties": {
+                          "serial": {
+                            "type": "string"
+                          },
+                          "serviceDate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "style": {
+                            "type": "string",
+                            "enum": [
+                              "flat",
+                              "box",
+                              "open",
+                              "dump",
+                              "tank",
+                              "waste",
+                              "tractor"
+                            ]
+                          }
+                        }
+                      },
+                      "operation": {
+                        "type": "object",
+                        "properties": {
+                          "operator": {
+                            "type": "string"
+                          },
+                          "line": {
+                            "type": "string"
+                          },
+                          "numberPlate": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "$id": "http://str8d8a.info/facility.schema.json",
+                "title": "Facility",
+                "description": "",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "observableType": {
+                    "type": "string",
+                    "pattern": "^facility$"
+                  },
+                  "location": {
+                    "description": "The location where the reservoir is situated or installed",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "$id": "https://geojson.org/schema/Feature.json",
+                    "title": "GeoJSON Feature",
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "properties",
+                      "geometry"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "Feature"
+                        ]
+                      },
+                      "properties": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "geometry": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "title": "GeoJSON Point",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Point"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "number"
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON LineString",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "LineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON Polygon",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Polygon"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 4,
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiPoint",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiPoint"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiLineString",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiLineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiPolygon",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiPolygon"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 4,
+                                    "items": {
+                                      "type": "array",
+                                      "minItems": 2,
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON GeometryCollection",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "geometries"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "GeometryCollection"
+                                ]
+                              },
+                              "geometries": {
+                                "type": "array",
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "title": "GeoJSON Point",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "Point"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON LineString",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "LineString"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "number"
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON Polygon",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "Polygon"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 4,
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 2,
+                                              "items": {
+                                                "type": "number"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiPoint",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiPoint"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "number"
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiLineString",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiLineString"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 2,
+                                              "items": {
+                                                "type": "number"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiPolygon",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiPolygon"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 4,
+                                              "items": {
+                                                "type": "array",
+                                                "minItems": 2,
+                                                "items": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "bbox": {
+                        "type": "array",
+                        "minItems": 4,
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "capabilities": {
+                    "description": "A list of the facility's capabilities to transform inputs into outputs"
+                  },
+                  "throughputs": {
+                    "description": "A list of the rates at which the facility can process various items",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "unit": {
+                          "type": "object",
+                          "oneOf": [
+                            {
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            {
+                              "properties": {
+                                "item": {
+                                  "type": "string"
+                                },
+                                "period": {
+                                  "type": "string",
+                                  "enum": [
+                                    "\u03bcs",
+                                    "ms",
+                                    "s",
+                                    "min",
+                                    "day",
+                                    "week",
+                                    "month",
+                                    "quarter",
+                                    "year",
+                                    "decade"
+                                  ]
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "$id": "http://str8d8a.info/reservoir.schema.json",
+                "title": "Reservoir",
+                "description": "A physical container that can hold a quantity of one or more materials, as installed at a location and intended for one or more uses. Reservoirs can store matter, energy, or both",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "observableType": {
+                    "type": "string",
+                    "pattern": "^reservoir$"
+                  },
+                  "location": {
+                    "description": "The location where the reservoir is situated or installed",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "$id": "https://geojson.org/schema/Feature.json",
+                    "title": "GeoJSON Feature",
+                    "type": "object",
+                    "required": [
+                      "type",
+                      "properties",
+                      "geometry"
+                    ],
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "Feature"
+                        ]
+                      },
+                      "properties": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "geometry": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "title": "GeoJSON Point",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Point"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "number"
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON LineString",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "LineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON Polygon",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "Polygon"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 4,
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiPoint",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiPoint"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiLineString",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiLineString"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "minItems": 2,
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 2,
+                                    "items": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON MultiPolygon",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "MultiPolygon"
+                                ]
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "minItems": 4,
+                                    "items": {
+                                      "type": "array",
+                                      "minItems": 2,
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "title": "GeoJSON GeometryCollection",
+                            "type": "object",
+                            "required": [
+                              "type",
+                              "geometries"
+                            ],
+                            "properties": {
+                              "type": {
+                                "type": "string",
+                                "enum": [
+                                  "GeometryCollection"
+                                ]
+                              },
+                              "geometries": {
+                                "type": "array",
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "title": "GeoJSON Point",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "Point"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON LineString",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "LineString"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "number"
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON Polygon",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "Polygon"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 4,
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 2,
+                                              "items": {
+                                                "type": "number"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiPoint",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiPoint"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "number"
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiLineString",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiLineString"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "minItems": 2,
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 2,
+                                              "items": {
+                                                "type": "number"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "title": "GeoJSON MultiPolygon",
+                                      "type": "object",
+                                      "required": [
+                                        "type",
+                                        "coordinates"
+                                      ],
+                                      "properties": {
+                                        "type": {
+                                          "type": "string",
+                                          "enum": [
+                                            "MultiPolygon"
+                                          ]
+                                        },
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "array",
+                                              "minItems": 4,
+                                              "items": {
+                                                "type": "array",
+                                                "minItems": 2,
+                                                "items": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "bbox": {
+                                          "type": "array",
+                                          "minItems": 4,
+                                          "items": {
+                                            "type": "number"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              "bbox": {
+                                "type": "array",
+                                "minItems": 4,
+                                "items": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "bbox": {
+                        "type": "array",
+                        "minItems": 4,
+                        "items": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "attributes": {
+                    "description": "The qualities of the container that are directly relevant to its economic value",
+                    "type": "object",
+                    "properties": {
+                      "matterContents": {
+                        "type": "string",
+                        "enum": [
+                          "liquid",
+                          "gas",
+                          "solid",
+                          "parts",
+                          "products"
+                        ]
+                      },
+                      "energyContents": {
+                        "type": "string",
+                        "enum": [
+                          "charge",
+                          "heat",
+                          "gravitational potential",
+                          "kinetic"
+                        ]
+                      },
+                      "site": {
+                        "type": "string",
+                        "enum": [
+                          "uncovered",
+                          "covered",
+                          "indoor",
+                          "climate controlled"
+                        ]
+                      },
+                      "support": {
+                        "type": "string",
+                        "enum": [
+                          "underground",
+                          "in-ground",
+                          "on-ground",
+                          "elevated",
+                          "rooftop"
+                        ]
+                      },
+                      "mobile": {
+                        "type": "string",
+                        "enum": [
+                          "fixed",
+                          "wheeled",
+                          "trailer",
+                          "powered"
+                        ]
+                      },
+                      "envelope": {
+                        "type": "string",
+                        "enum": [
+                          "pile",
+                          "rigid, closed top",
+                          "rigid, open top",
+                          "rigid, floating roof",
+                          "bladder",
+                          "pool, manmade",
+                          "lake, manmade",
+                          "lake, natural",
+                          "shelves",
+                          "racks"
+                        ]
+                      },
+                      "material": {
+                        "type": "string",
+                        "enum": [
+                          "plastic",
+                          "glass",
+                          "fiberglass",
+                          "steel",
+                          "aluminum",
+                          "copper",
+                          "fabric",
+                          "masonry",
+                          "ceramic",
+                          "other"
+                        ]
+                      },
+                      "shape": {
+                        "type": "string",
+                        "enum": [
+                          "horizontal cylinder",
+                          "vertical cylinder",
+                          "sphere",
+                          "teardrop",
+                          "rectangle",
+                          "balloon",
+                          "pillow",
+                          "pyramidal",
+                          "structural",
+                          "irregular",
+                          "other"
+                        ]
+                      },
+                      "bottom": {
+                        "type": "string",
+                        "enum": [
+                          "flat",
+                          "cone",
+                          "dish",
+                          "slope",
+                          "other"
+                        ]
+                      },
+                      "insulation": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "air",
+                          "vacuum",
+                          "gas",
+                          "solid"
+                        ]
+                      },
+                      "wall": {
+                        "type": "string",
+                        "enum": [
+                          "none",
+                          "single",
+                          "double",
+                          "reinforced",
+                          "other"
+                        ]
+                      }
+                    }
+                  },
+                  "capacity": {
+                    "description": "The material or energy capacity of the reservoir",
+                    "type": "object",
+                    "properties": {
+                      "unit": {
+                        "type": "string"
+                      },
+                      "capacityGeneric": {
+                        "description": "A volumetric quantity",
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "L",
+                              "cu m",
+                              "ae-ft",
+                              "gal",
+                              "cu ft",
+                              "bbl"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        }
+                      },
+                      "capacityNominal": {
+                        "description": "A volumetric quantity",
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "L",
+                              "cu m",
+                              "ae-ft",
+                              "gal",
+                              "cu ft",
+                              "bbl"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        }
+                      },
+                      "capacityActual": {
+                        "description": "A volumetric quantity",
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "L",
+                              "cu m",
+                              "ae-ft",
+                              "gal",
+                              "cu ft",
+                              "bbl"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        }
+                      },
+                      "capacityEffective": {
+                        "description": "A volumetric quantity",
+                        "type": "object",
+                        "properties": {
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "L",
+                              "cu m",
+                              "ae-ft",
+                              "gal",
+                              "cu ft",
+                              "bbl"
+                            ]
+                          },
+                          "amount": {
+                            "type": "number",
+                            "minimum": 0
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "purpose": {
+                    "description": "How this reservoir is used, which will depend on its role in the larger facility or system",
+                    "type": "object",
+                    "properties": {
+                      "usages": {
+                        "description": "The role(s) this reservoir plays in production processes",
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "enum": [
+                            "input inventory",
+                            "output inventory",
+                            "working supply",
+                            "long-term storage"
+                          ]
+                        }
+                      },
+                      "materials": {
+                        "description": "The substances or materials that this reservoir typically contains during its use",
+                        "type": "array",
+                        "items": {}
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    }
+  },
+  "definitions": {
+    "observer": {
+      "title": "observer",
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "method": {
+      "title": "observation method",
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "eye",
+            "camera",
+            "transponder"
+          ]
+        },
+        "person": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "3rdparty"
+          ]
+        },
+        "encoding": {
+          "type": "string",
+          "enum": [
+            "human",
+            "machine"
+          ]
+        }
+      }
+    }
+  }
+}
