@@ -1,0 +1,30 @@
+{
+    "observer": {
+        "email": "beau.cronin@gmail.com"
+    },
+    "method": {
+        "mode": "transponder",
+        "platform": "stationary",
+        "identity": "3rdparty",
+        "encoding": "standard-based"
+    },
+    "items": [{
+        "time": "2019-12-06T08:15:00-08:00",
+        "location": {
+            "latitude": 37.72,
+            "longitude": -122.21
+        },
+        "data": {
+            "observableType": "conveyance",
+            "conveyanceType": "airplane",
+            "model": {
+                "manufacturer": "McDonnell Douglas",
+                "typeCode": "DC10"
+            },
+            "operation": {
+                "airline": "FedEx",
+                "registration": "N318FE"
+            }
+        }
+    }]
+}
