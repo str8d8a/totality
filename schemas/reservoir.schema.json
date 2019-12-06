@@ -4,7 +4,12 @@
     "title": "Reservoir",
     "description": "A physical container that can hold a quantity of one or more materials, as installed at a location and intended for one or more uses. Reservoirs can store matter, energy, or both",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
+        "observableType": {
+            "type": "string",
+            "pattern": "^reservoir$"
+        },
         "location": {
             "description": "The location where the reservoir is situated or installed",
             "$ref": "https://geojson.org/schema/Feature.json"
@@ -106,7 +111,7 @@
                     "description": "The substances or materials that this reservoir typically contains during its use",
                     "type": "array",
                     "items": {
-                        "$ref": "http://str8d8a.info/material.schema.json"
+                        "$ref": "material.schema.json"
                     }
                 }
             }

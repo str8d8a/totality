@@ -4,7 +4,12 @@
     "title": "Facility",
     "description": "",
     "type": "object",
+    "additionalProperties": false,
     "properties": {
+        "observableType": {
+            "type": "string",
+            "pattern": "^facility$"
+        },
         "location": {
             "description": "The location where the reservoir is situated or installed",
             "$ref": "https://geojson.org/schema/Feature.json"

@@ -1,6 +1,5 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://str8d8a.info/observation.schema.json",
     "title": "observation",
     "description": "A document describing the observation of one or more items, by a particular observer using a specified method. In epistemic terms, the submission of this document is an attestation that the items are as described, and the reliability of this attestation is a function of various factors.\n\nThe `observer`, `method`, and `items` properties are all required for the observation document to be valid.",
     "type": "object",

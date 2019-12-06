@@ -21,6 +21,10 @@
             "additionalProperties": false,
             "required": ["conveyanceType"],
             "properties": {
+                "observableType": {
+                    "type": "string",
+                    "pattern": "^conveyance$"
+                },
                 "conveyanceType": {
                     "type": "string",
                     "pattern": "^airplane$"
@@ -95,6 +99,10 @@
             "additionalProperties": false,
             "required": ["conveyanceType"],
             "properties": {
+                "observableType": {
+                    "type": "string",
+                    "pattern": "^conveyance$"
+                },
                 "conveyanceType": {
                     "type": "string",
                     "pattern": "^locomotive$"
@@ -145,6 +153,10 @@
             "additionalProperties": false,
             "required": ["conveyanceType"],
             "properties": {
+                "observableType": {
+                    "type": "string",
+                    "pattern": "^conveyance$"
+                },
                 "conveyanceType": {
                     "type": "string",
                     "pattern": "^ship$"
@@ -220,6 +232,10 @@
             "additionalProperties": false,
             "required": ["conveyanceType"],
             "properties": {
+                "observableType": {
+                    "type": "string",
+                    "pattern": "^conveyance$"
+                },
                 "conveyanceType": {
                     "type": "string",
                     "pattern": "^hauler$"
