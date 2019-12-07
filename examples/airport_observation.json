@@ -1,0 +1,31 @@
+{
+
+} {
+    "fullName": "San Francisco International Airport",
+    "commonName": "SFO",
+    "location": {},
+    "airportInfo": {
+        "icao": "KSFO",
+        "iata": "SFO",
+        "faa": "SFO",
+        "runways": [{
+            "name": "10L/28R",
+            "length": "",
+            "width": "",
+            "surface": "asphalt/grooved, in good condition",
+            "left": {
+                "name": "10L",
+                "lat": 0,
+                "long": 0,
+                "elevation": {},
+                "heading": {
+                    "magnetic": 104,
+                    "true": 118
+                }
+            },
+            "right": {}
+        }, {
+            "name": "10R/28L"
+        }]
+    }
+}
