@@ -1,304 +1,292 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://str8d8a.info/conveyance.schema.json",
-    "title": "conveyance",
-    "description": "A means of transporting materials, either matter or energy, from one location to another",
-    "type": "object",
-    "oneOf": [{
-        "$ref": "#/definitions/airplane"
-    }, {
-        "$ref": "#/definitions/locomotive"
-    }, {
-        "$ref": "#/definitions/ship"
-    }, {
-        "$ref": "#/definitions/hauler"
-    }],
     "definitions": {
+        "conveyance": {
+            "allOf": [{
+                "$ref": "observable.schema.json"
+            }, {
+                "type": "object",
+                "properties": {
+                    "conveyanceType": {
+                        "type": "string",
+                        "enum": ["airplane", "ship", "locomotive", "hauler"]
+                    }
+                }
+            }]
+        },
         "airplane": {
-            "title": "airplane",
-            "description": ":",
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["observableType", "conveyanceType"],
-            "properties": {
-                "observableType": {
-                    "type": "string",
-                    "pattern": "^conveyance$"
-                },
-                "conveyanceType": {
-                    "type": "string",
-                    "pattern": "^airplane$"
-                },
-                "model": {
-                    "description": "Properties that describe the model of aircraft, and that are shared by all aircraft of the same model",
-                    "type": "object",
-                    "properties": {
-                        "manufacturer": {
-                            "type": "string",
-                            "enum": ["Boeing", "Airbus", "McDonnel Douglas", "Embraer", "Bombardier",
-                                "Canadair", "ATR", "Cessna", "Sukhoi", "Other"
-                            ]
-                        },
-                        "family": {
-                            "type": "string",
-                            "enum": ["B727", "B737", "B747", "B757", "B767", "B777", "B787",
-                                "A300", "A319", "A320", "A321", "A330", "A340", "A350", "A380"
-                            ]
-                        },
-                        "typeCode": {
-                            "type": "string",
-                            "enum": ["A20N", "A21N", "A306", "A318", "A319", "A320", "A321", "A332",
-                                "A333", "A343", "A359", "A35K", "A388", "AT43", "AT46", "AT75", "AT76",
-                                "B190", "B37M", "B38M", "B39M", "B734", "B736", "B737", "B738", "B739",
-                                "B744", "B748", "B752", "B753", "B763", "B764", "B772", "B77L", "B77W",
-                                "B788", "B789", "B78X", "C208", "CRJ1", "CRJ2", "CRJ7", "CRJX", "D328",
-                                "DC10", "DH8A", "DH8B", "DH8C", "DH8D", "E145", "E170", "E190", "E45X",
-                                "E75L", "E75S", "FA7X", "GL4F", "J328", "MD11", "SF34", "SU95"
-                            ]
+            "allOf": [{
+                "$ref": "#/definitions/conveyance"
+            }, {
+                "properties": {
+                    "model": {
+                        "description": "Properties that describe the model of aircraft, and that are shared by all aircraft of the same model",
+                        "type": "object",
+                        "properties": {
+                            "manufacturer": {
+                                "type": "string",
+                                "enum": ["Boeing", "Airbus", "McDonnell Douglas", "Embraer", "Bombardier",
+                                    "Canadair", "ATR", "Cessna", "Sukhoi", "Other"
+                                ]
+                            },
+                            "family": {
+                                "type": "string",
+                                "enum": ["B727", "B737", "B747", "B757", "B767", "B777", "B787",
+                                    "A300", "A319", "A320", "A321", "A330", "A340", "A350", "A380"
+                                ]
+                            },
+                            "typeCode": {
+                                "type": "string",
+                                "enum": ["A20N", "A21N", "A306", "A318", "A319", "A320", "A321", "A332",
+                                    "A333", "A343", "A359", "A35K", "A388", "AT43", "AT46", "AT75", "AT76",
+                                    "B190", "B37M", "B38M", "B39M", "B734", "B736", "B737", "B738", "B739",
+                                    "B744", "B748", "B752", "B753", "B763", "B764", "B772", "B77L", "B77W",
+                                    "B788", "B789", "B78X", "C208", "CRJ1", "CRJ2", "CRJ7", "CRJX", "D328",
+                                    "DC10", "DH8A", "DH8B", "DH8C", "DH8D", "E145", "E170", "E190", "E45X",
+                                    "E75L", "E75S", "FA7X", "GL4F", "J328", "MD11", "SF34", "SU95"
+                                ]
+                            }
                         }
-                    }
-                },
-                "airframe": {
-                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
-                    "type": "object",
-                    "properties": {
-                        "serial": {
-                            "type": "string"
-                        },
-                        "lineNumber": {
-                            "type": "string"
-                        },
-                        "firstFlightDate": {
-                            "type": "string",
-                            "format": "date"
+                    },
+                    "airframe": {
+                        "description": "Properties that describe the particular physical example, and which do not change with new ownership",
+                        "type": "object",
+                        "properties": {
+                            "serial": {
+                                "type": "string"
+                            },
+                            "lineNumber": {
+                                "type": "string"
+                            },
+                            "firstFlightDate": {
+                                "type": "string",
+                                "format": "date"
+                            }
                         }
-                    }
-                },
-                "operation": {
-                    "description": "Properties that describe the current ownership, operation, and licensing of the aircraft",
-                    "type": "object",
-                    "properties": {
-                        "operator": {
-                            "type": "string"
-                        },
-                        "airline": {
-                            "type": "string"
-                        },
-                        "deliveryDate": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "registration": {
-                            "type": "string"
+                    },
+                    "operation": {
+                        "description": "Properties that describe the current ownership, operation, and licensing of the aircraft",
+                        "type": "object",
+                        "properties": {
+                            "operator": {
+                                "type": "string"
+                            },
+                            "airline": {
+                                "type": "string"
+                            },
+                            "deliveryDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "registration": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
-            }
+            }]
         },
         "locomotive": {
-            "title": "locomotive",
-            "description": ":",
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["observableType", "conveyanceType"],
-            "properties": {
-                "observableType": {
-                    "type": "string",
-                    "pattern": "^conveyance$"
-                },
-                "conveyanceType": {
-                    "type": "string",
-                    "pattern": "^locomotive$"
-                },
-                "model": {
-                    "description": "Properties that describe the model of locomotive, and that are shared by all locomotives of the same model",
-                    "type": "object",
-                    "properties": {
-                        "manufacturer": {
-                            "type": "string"
-                        },
-                        "family": {
-                            "type": "string"
-                        },
-                        "typeCode": {
-                            "type": "string"
+            "allOf": [{
+                "$ref": "#/definitions/conveyance"
+            }, {
+                "properties": {
+                    "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                    },
+                    "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^locomotive$"
+                    },
+                    "model": {
+                        "description": "Properties that describe the model of locomotive, and that are shared by all locomotives of the same model",
+                        "type": "object",
+                        "properties": {
+                            "manufacturer": {
+                                "type": "string"
+                            },
+                            "family": {
+                                "type": "string"
+                            },
+                            "typeCode": {
+                                "type": "string"
+                            }
                         }
-                    }
-                },
-                "engine": {
-                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
-                    "type": "object",
-                    "properties": {
-                        "serial": {
-                            "type": "string"
-                        },
-                        "serviceDate": {
-                            "type": "string",
-                            "format": "date"
+                    },
+                    "engine": {
+                        "description": "Properties that describe the particular physical example, and which do not change with new ownership",
+                        "type": "object",
+                        "properties": {
+                            "serial": {
+                                "type": "string"
+                            },
+                            "serviceDate": {
+                                "type": "string",
+                                "format": "date"
+                            }
                         }
-                    }
-                },
-                "operation": {
-                    "description": "Properties that describe the current ownership, operation, and licensing of the locomotive",
-                    "type": "object",
-                    "properties": {
-                        "railroad": {
-                            "type": "string"
-                        },
-                        "number": {
-                            "type": "string"
+                    },
+                    "operation": {
+                        "description": "Properties that describe the current ownership, operation, and licensing of the locomotive",
+                        "type": "object",
+                        "properties": {
+                            "railroad": {
+                                "type": "string"
+                            },
+                            "number": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
-            }
+            }]
         },
         "ship": {
-            "title": "ship",
-            "description": ":",
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["observableType", "conveyanceType"],
-            "properties": {
-                "observableType": {
-                    "type": "string",
-                    "pattern": "^conveyance$"
-                },
-                "conveyanceType": {
-                    "type": "string",
-                    "pattern": "^ship$"
-                },
-                "hull": {
-                    "description": "Properties that describe the particular vessel, and which do not change with new ownership",
-                    "type": "object",
-                    "properties": {
-                        "imo": {
-                            "type": "string",
-                            "pattern": "^[0-9]{7}$"
-                        },
-                        "yearBuilt": {
-                            "type": "string",
-                            "pattern": "^[0-9]{4}$"
-                        },
-                        "builder": {
-                            "type": "string"
-                        },
-                        "vesselType": {
-                            "type": "string",
-                            "enum": ["cargo ship", "ore carrier", "oil tanker", "bulk carrier",
-                                "fishing", "heavy lift"
-                            ]
-                        },
-                        "length": {
-                            "type": "object",
-                            "$ref": "measures.schema.json#/definitions/length"
-                        },
-                        "width": {
-                            "type": "object",
-                            "$ref": "measures.schema.json#/definitions/length"
-                        },
-                        "deadWeight": {
-                            "type": "object",
-                            "$ref": "measures.schema.json#/definitions/mass"
-                        },
-                        "grossTonnage": {
-                            "type": "object",
-                            "$ref": "measures.schema.json#/definitions/mass"
+            "allOf": [{
+                "$ref": "#/definitions/conveyance"
+            }, {
+                "properties": {
+                    "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                    },
+                    "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^ship$"
+                    },
+                    "hull": {
+                        "description": "Properties that describe the particular vessel, and which do not change with new ownership",
+                        "type": "object",
+                        "properties": {
+                            "imo": {
+                                "type": "string",
+                                "pattern": "^[0-9]{7}$"
+                            },
+                            "yearBuilt": {
+                                "type": "string",
+                                "pattern": "^[0-9]{4}$"
+                            },
+                            "builder": {
+                                "type": "string"
+                            },
+                            "vesselType": {
+                                "type": "string",
+                                "enum": ["cargo ship", "ore carrier", "oil tanker", "bulk carrier",
+                                    "fishing", "heavy lift"
+                                ]
+                            },
+                            "length": {
+                                "type": "object",
+                                "$ref": "measures.schema.json#/definitions/length"
+                            },
+                            "width": {
+                                "type": "object",
+                                "$ref": "measures.schema.json#/definitions/length"
+                            },
+                            "deadWeight": {
+                                "type": "object",
+                                "$ref": "measures.schema.json#/definitions/mass"
+                            },
+                            "grossTonnage": {
+                                "type": "object",
+                                "$ref": "measures.schema.json#/definitions/mass"
+                            }
                         }
-                    }
-                },
-                "operation": {
-                    "description": "Properties that describe the current ownership, operation, and licensing of the vessel",
-                    "type": "object",
-                    "properties": {
-                        "manager": {
-                            "type": "string"
-                        },
-                        "owner": {
-                            "type": "string"
-                        },
-                        "AISName": {
-                            "type": "string"
-                        },
-                        "MMSI": {
-                            "type": "string",
-                            "pattern": "^[0-9]{9}$"
-                        },
-                        "callSign": {
-                            "type": "string"
-                        },
-                        "flag": {
-                            "type": "string"
+                    },
+                    "operation": {
+                        "description": "Properties that describe the current ownership, operation, and licensing of the vessel",
+                        "type": "object",
+                        "properties": {
+                            "manager": {
+                                "type": "string"
+                            },
+                            "owner": {
+                                "type": "string"
+                            },
+                            "AISName": {
+                                "type": "string"
+                            },
+                            "MMSI": {
+                                "type": "string",
+                                "pattern": "^[0-9]{9}$"
+                            },
+                            "callSign": {
+                                "type": "string"
+                            },
+                            "flag": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
-            }
+            }]
         },
         "hauler": {
-            "title": "hauler",
-            "description": ":",
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["observableType", "conveyanceType"],
-            "properties": {
-                "observableType": {
-                    "type": "string",
-                    "pattern": "^conveyance$"
-                },
-                "conveyanceType": {
-                    "type": "string",
-                    "pattern": "^hauler$"
-                },
-                "model": {
-                    "description": "Properties that describe the model of vehicle, and that are shared by all vehicles of the same model",
-                    "type": "object",
-                    "properties": {
-                        "manufacturer": {
-                            "type": "string"
-                        },
-                        "model": {
-                            "type": "string"
-                        },
-                        "driveTrain": {
-                            "type": "string",
-                            "enum": ["diesel", "battery electric", "gasoline",
-                                "natural gas", "hydrogen fuel cell"
-                            ]
+            "allOf": [{
+                "$ref": "#/definitions/conveyance"
+            }, {
+                "properties": {
+                    "observableType": {
+                        "type": "string",
+                        "pattern": "^conveyance$"
+                    },
+                    "conveyanceType": {
+                        "type": "string",
+                        "pattern": "^hauler$"
+                    },
+                    "model": {
+                        "description": "Properties that describe the model of vehicle, and that are shared by all vehicles of the same model",
+                        "type": "object",
+                        "properties": {
+                            "manufacturer": {
+                                "type": "string"
+                            },
+                            "model": {
+                                "type": "string"
+                            },
+                            "driveTrain": {
+                                "type": "string",
+                                "enum": ["diesel", "battery electric", "gasoline",
+                                    "natural gas", "hydrogen fuel cell"
+                                ]
+                            }
                         }
-                    }
-                },
-                "chassis": {
-                    "description": "Properties that describe the particular physical example, and which do not change with new ownership",
-                    "type": "object",
-                    "properties": {
-                        "serial": {
-                            "type": "string"
-                        },
-                        "serviceDate": {
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "style": {
-                            "type": "string",
-                            "enum": ["flat", "box", "open", "dump", "tank", "waste", "tractor"]
+                    },
+                    "chassis": {
+                        "description": "Properties that describe the particular physical example, and which do not change with new ownership",
+                        "type": "object",
+                        "properties": {
+                            "serial": {
+                                "type": "string"
+                            },
+                            "serviceDate": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "style": {
+                                "type": "string",
+                                "enum": ["flat", "box", "open", "dump", "tank", "waste", "tractor"]
+                            }
                         }
-                    }
-                },
-                "operation": {
-                    "description": "Properties that describe the current ownership, operation, and licensing of the vehicle",
-                    "type": "object",
-                    "properties": {
-                        "operator": {
-                            "type": "string"
-                        },
-                        "line": {
-                            "type": "string"
-                        },
-                        "numberPlate": {
-                            "type": "string"
+                    },
+                    "operation": {
+                        "description": "Properties that describe the current ownership, operation, and licensing of the vehicle",
+                        "type": "object",
+                        "properties": {
+                            "operator": {
+                                "type": "string"
+                            },
+                            "line": {
+                                "type": "string"
+                            },
+                            "numberPlate": {
+                                "type": "string"
+                            }
                         }
                     }
                 }
-            }
+            }]
         }
     }
 }

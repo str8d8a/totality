@@ -1,51 +1,79 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://str8d8a.info/facility.schema.json",
     "title": "Facility",
     "description": "",
     "type": "object",
     "additionalProperties": false,
-    "required": ["observableType"],
-    "properties": {
-        "observableType": {
-            "type": "string",
-            "pattern": "^facility$"
-        },
-        "location": {
-            "description": "The location where the facility is situated or installed",
-            "$ref": "https://geojson.org/schema/Feature.json"
-        },
-        "capabilities": {
-            "description": "A list of the facility's capabilities to transform inputs into outputs"
-        },
-        "throughputs": {
-            "description": "A list of the rates at which the facility can process various items",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "unit": {
-                        "type": "object",
-                        "oneOf": [{
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            {
-                                "properties": {
-                                    "item": {
-                                        "type": "string"
-                                    },
-                                    "period": {
-                                        "type": "string",
-                                        "enum": ["μs", "ms", "s", "min", "day", "week", "month", "quarter", "year", "decade"]
-                                    }
-                                }
+    "allOf": [{
+        "$ref": "observable.schema.json"
+    }, {
+        "properties": {
+            "capabilities": {
+                "description": "A list of the facility's capabilities to transform inputs into outputs",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "inputs": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/input-output"
                             }
-                        ]
+                        },
+                        "outputs": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/input-output"
+                            }
+                        }
                     }
+                }
+            },
+            "throughputs": {
+                "description": "A list of the rates at which the facility can process various items",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "unit": {
+                            "type": "object",
+                            "oneOf": [{
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                {
+                                    "properties": {
+                                        "item": {
+                                            "type": "string"
+                                        },
+                                        "period": {
+                                            "type": "string",
+                                            "enum": ["μs", "ms", "s", "min", "day", "week", "month", "quarter", "year", "decade"]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }],
+    "definitions": {
+        "input-output": {
+            "title": "Input-Output",
+            "description": "An input or output of a facility process",
+            "type": "object",
+            "properties": {
+                "material": {
+                    "oneOf": [{
+                        "$ref": "nomenclatures.schema.json#/definitions/harmonized"
+                    }, {
+                        "$ref": "nomenclatures.schema.json#/definitions/combinedNomenclature"
+                    }]
                 }
             }
         }

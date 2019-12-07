@@ -24,12 +24,17 @@
                         "format": "date-time"
                     },
                     "location": {
-                        "type": "object",
                         "$ref": "measures.schema.json#/definitions/point"
                     },
                     "data": {
                         "anyOf": [{
-                            "$ref": "conveyance.schema.json"
+                            "$ref": "conveyance.schema.json#/definitions/airplane"
+                        }, {
+                            "$ref": "conveyance.schema.json#/definitions/locomotive"
+                        }, {
+                            "$ref": "conveyance.schema.json#/definitions/ship"
+                        }, {
+                            "$ref": "conveyance.schema.json#/definitions/hauler"
                         }, {
                             "$ref": "facility.schema.json"
                         }, {

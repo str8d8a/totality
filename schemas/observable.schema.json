@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+        "observableType": {
+            "type": "string",
+            "enum": ["facility", "reservoir", "conveyance"]
+        },
+        "location": {
+            "description": "The location where the observable is situated or installed",
+            "$ref": "https://geojson.org/schema/Feature.json"
+        }
+    }
+}
