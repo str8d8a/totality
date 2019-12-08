@@ -55,7 +55,7 @@
             "capabilities": [{
                 "inputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "2615.90"
                     }
                 }],
@@ -85,23 +85,23 @@
             "capabilities": [{
                 "inputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "2615.90"
                     }
                 }],
                 "outputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.20"
                     }
                 }, {
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.30"
                     }
                 }, {
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.90"
                     }
                 }],
