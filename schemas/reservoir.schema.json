@@ -4,110 +4,112 @@
     "description": "A physical container that can hold a quantity of one or more materials, as installed at a location and intended for one or more uses. Reservoirs can store matter, energy, or both",
     "type": "object",
     "additionalProperties": false,
-    "allOf": [{
-        "$ref": "observable.schema.json"
-    }, {
-        "properties": {
-            "attributes": {
-                "description": "The qualities of the container that are directly relevant to its economic value",
-                "type": "object",
-                "properties": {
-                    "matterContents": {
-                        "type": "string",
-                        "enum": ["liquid", "gas", "solid", "parts", "products"]
-                    },
-                    "energyContents": {
-                        "type": "string",
-                        "enum": ["charge", "heat", "gravitational potential", "kinetic"]
-                    },
-                    "site": {
-                        "type": "string",
-                        "enum": ["uncovered", "covered", "indoor", "climate controlled"]
-                    },
-                    "support": {
-                        "type": "string",
-                        "enum": ["underground", "in-ground", "on-ground", "elevated", "rooftop"]
-                    },
-                    "mobile": {
-                        "type": "string",
-                        "enum": ["fixed", "wheeled", "trailer", "powered"]
-                    },
-                    "envelope": {
-                        "type": "string",
-                        "enum": ["pile", "rigid, closed top", "rigid, open top", "rigid, floating roof",
-                            "bladder", "pool, manmade", "lake, manmade", "lake, natural", "shelves", "racks"
-                        ]
-                    },
-                    "material": {
-                        "type": "string",
-                        "enum": ["plastic", "glass", "fiberglass", "steel", "aluminum", "copper", "fabric",
-                            "masonry", "ceramic", "other"
-                        ]
-                    },
-                    "shape": {
-                        "type": "string",
-                        "enum": ["horizontal cylinder", "vertical cylinder", "sphere", "teardrop",
-                            "rectangle", "balloon", "pillow", "pyramidal", "structural", "irregular", "other"
-                        ]
-                    },
-                    "bottom": {
-                        "type": "string",
-                        "enum": ["flat", "cone", "dish", "slope", "other"]
-                    },
-                    "insulation": {
-                        "type": "string",
-                        "enum": ["none", "air", "vacuum", "gas", "solid"]
-                    },
-                    "wall": {
-                        "type": "string",
-                        "enum": ["none", "single", "double", "reinforced", "other"]
-                    }
+    "properties": {
+        "observableType": {
+            "type": "string",
+            "enum": ["reservoir"]
+        },
+        "attributes": {
+            "description": "The qualities of the container that are directly relevant to its economic value",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "matterContents": {
+                    "type": "string",
+                    "enum": ["liquid", "gas", "solid", "parts", "products"]
+                },
+                "energyContents": {
+                    "type": "string",
+                    "enum": ["charge", "heat", "gravitational potential", "kinetic"]
+                },
+                "site": {
+                    "type": "string",
+                    "enum": ["uncovered", "covered", "indoor", "climate controlled"]
+                },
+                "support": {
+                    "type": "string",
+                    "enum": ["underground", "in-ground", "on-ground", "elevated", "rooftop"]
+                },
+                "mobile": {
+                    "type": "string",
+                    "enum": ["fixed", "wheeled", "trailer", "powered"]
+                },
+                "envelope": {
+                    "type": "string",
+                    "enum": ["pile", "rigid, closed top", "rigid, open top", "rigid, floating roof",
+                        "bladder", "pool, manmade", "lake, manmade", "lake, natural", "shelves", "racks"
+                    ]
+                },
+                "material": {
+                    "type": "string",
+                    "enum": ["plastic", "glass", "fiberglass", "steel", "aluminum", "copper", "fabric",
+                        "masonry", "ceramic", "other"
+                    ]
+                },
+                "shape": {
+                    "type": "string",
+                    "enum": ["horizontal cylinder", "vertical cylinder", "sphere", "teardrop",
+                        "rectangle", "balloon", "pillow", "pyramidal", "structural", "irregular", "other"
+                    ]
+                },
+                "bottom": {
+                    "type": "string",
+                    "enum": ["flat", "cone", "dish", "slope", "other"]
+                },
+                "insulation": {
+                    "type": "string",
+                    "enum": ["none", "air", "vacuum", "gas", "solid"]
+                },
+                "wall": {
+                    "type": "string",
+                    "enum": ["none", "single", "double", "reinforced", "other"]
                 }
-            },
-            "capacity": {
-                "description": "The material or energy capacity of the reservoir",
-                "type": "object",
-                "properties": {
-                    "capacityGeneric": {
-                        "description": "The capacity of the container, without specification of nominal or effective; may be ambiguous, depending on context",
-                        "$ref": "measures.schema.json#/definitions/volume"
-                    },
-                    "capacityNominal": {
-                        "description": "The physical capacity, calculated without taking into account the limits or constraints of actual usage conditions; may also be referred to 'rated capacity'",
-                        "$ref": "measures.schema.json#/definitions/volume"
-                    },
-                    "capacityActual": {
-                        "description": "The capacity, once the physical installation characteristics are taken into account",
-                        "$ref": "measures.schema.json#/definitions/volume"
-                    },
-                    "capacityEffective": {
-                        "description": "The capacity, once the functional and operational constraints are taken into account; may also be referred to as 'usable capacity'",
-                        "$ref": "measures.schema.json#/definitions/volume"
-                    }
+            }
+        },
+        "capacity": {
+            "description": "The material or energy capacity of the reservoir",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "capacityGeneric": {
+                    "description": "The capacity of the container, without specification of nominal or effective; may be ambiguous, depending on context",
+                    "$ref": "measures.schema.json#/definitions/volume"
+                },
+                "capacityNominal": {
+                    "description": "The physical capacity, calculated without taking into account the limits or constraints of actual usage conditions; may also be referred to 'rated capacity'",
+                    "$ref": "measures.schema.json#/definitions/volume"
+                },
+                "capacityActual": {
+                    "description": "The capacity, once the physical installation characteristics are taken into account",
+                    "$ref": "measures.schema.json#/definitions/volume"
+                },
+                "capacityEffective": {
+                    "description": "The capacity, once the functional and operational constraints are taken into account; may also be referred to as 'usable capacity'",
+                    "$ref": "measures.schema.json#/definitions/volume"
                 }
-            },
-            "purpose": {
-                "description": "How this reservoir is used, which will depend on its role in the larger facility or system",
-                "type": "object",
-                "properties": {
-                    "usages": {
-                        "description": "The role(s) this reservoir plays in production processes",
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "enum": ["input inventory", "output inventory", "working supply", "long-term storage"]
-                        }
-                    },
-                    "materials": {
-                        "description": "The substances or materials that this reservoir typically contains during its use",
-                        "type": "array",
-                        "items": {
-                            "$ref": "material.schema.json"
-                        }
+            }
+        },
+        "purpose": {
+            "description": "How this reservoir is used, which will depend on its role in the larger facility or system",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "usages": {
+                    "description": "The role(s) this reservoir plays in production processes",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": ["input inventory", "output inventory", "working supply", "long-term storage"]
+                    }
+                },
+                "materials": {
+                    "description": "The substances or materials that this reservoir typically contains during its use",
+                    "type": "array",
+                    "items": {
+                        "$ref": "material.schema.json"
                     }
                 }
             }
-
         }
-    }]
+    }
 }

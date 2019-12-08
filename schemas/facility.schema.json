@@ -4,75 +4,109 @@
     "description": "",
     "type": "object",
     "additionalProperties": false,
-    "allOf": [{
-        "$ref": "observable.schema.json"
-    }, {
-        "properties": {
-            "capabilities": {
-                "description": "A list of the facility's capabilities to transform inputs into outputs",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "inputs": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/input-output"
-                            }
-                        },
-                        "outputs": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/input-output"
-                            }
+    "properties": {
+        "observableType": {
+            "type": "string",
+            "enum": ["facility"]
+        },
+        "commonName": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "capabilities": {
+            "description": "A list of the facility's capabilities to transform inputs into outputs",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "inputs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/input-output"
                         }
-                    }
-                }
-            },
-            "throughputs": {
-                "description": "A list of the rates at which the facility can process various items",
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "unit": {
-                            "type": "object",
-                            "oneOf": [{
-                                    "properties": {
-                                        "name": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                {
-                                    "properties": {
-                                        "item": {
-                                            "type": "string"
-                                        },
-                                        "period": {
-                                            "type": "string",
-                                            "enum": ["μs", "ms", "s", "min", "day", "week", "month", "quarter", "year", "decade"]
-                                        }
-                                    }
-                                }
-                            ]
+                    },
+                    "outputs": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/input-output"
+                        }
+                    },
+                    "activity": {
+                        "$ref": "#/definitions/activity"
+                    },
+                    "equipment": {
+                        "type": "array",
+                        "items": {
+                            "type": "object"
                         }
                     }
                 }
             }
+        },
+        "throughputs": {
+            "description": "A list of the rates at which the facility can process various items",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "unit": {
+                        "type": "object",
+                        "oneOf": [{
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "item": {
+                                        "type": "string"
+                                    },
+                                    "period": {
+                                        "type": "string",
+                                        "enum": ["μs", "ms", "s", "min", "day", "week", "month", "quarter", "year", "decade"]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
         }
-    }],
+    },
     "definitions": {
         "input-output": {
             "title": "Input-Output",
             "description": "An input or output of a facility process",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "material": {
-                    "oneOf": [{
+                    "anyOf": [{
                         "$ref": "nomenclatures.schema.json#/definitions/harmonized"
                     }, {
                         "$ref": "nomenclatures.schema.json#/definitions/combinedNomenclature"
+                    }]
+                }
+            }
+        },
+        "activity": {
+            "title": "Activity",
+            "description": "An economic activity performed at a facility",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "process": {
+                    "oneOf": [{
+                        "$ref": "nomenclatures.schema.json#/definitions/isic"
                     }]
                 }
             }

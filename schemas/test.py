@@ -3,8 +3,8 @@ import json
 import os
 
 # https://github.com/Julian/jsonschema/issues/313#issuecomment-269361225
-# sName = 'observation.schema.json'
-sName = '../totality.schema.json'
+sName = 'observation.schema.json'
+# sName = '../totality.schema.json'
 sHandle = open(sName)
 s = json.loads(sHandle.read())
 schemaAbs = 'file://' + os.path.abspath(sName)
@@ -75,7 +75,7 @@ j = {
             "capabilities": [{
                 "inputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "2615.90"
                     }
                 }],
@@ -105,23 +105,23 @@ j = {
             "capabilities": [{
                 "inputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "2615.90"
                     }
                 }],
                 "outputs": [{
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.20"
                     }
                 }, {
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.30"
                     }
                 }, {
                     "material": {
-                        "nomeclature": "HS",
+                        "nomenclature": "HS",
                         "code": "8103.90"
                     }
                 }],
@@ -140,6 +140,7 @@ j = {
             "longitude": 116.056
         },
         "data": {
+            "observableType": "reservoir",
             "attributes": {
                 "matterContents": "solid",
                 "site": "uncovered",

@@ -4,6 +4,7 @@
     "description": "A document describing the observation of one or more items, by a particular observer using a specified method. In epistemic terms, the submission of this document is an attestation that the items are as described, and the reliability of this attestation is a function of various factors.\n\nThe `observer`, `method`, and `items` properties are all required for the observation document to be valid.",
     "type": "object",
     "required": ["observer", "method", "items"],
+    "additionalProperties": false,
     "properties": {
         "observer": {
             "type": "object",
@@ -18,6 +19,7 @@
             "items": {
                 "type": "object",
                 "required": ["time", "location", "data"],
+                "additionalProperties": false,
                 "properties": {
                     "time": {
                         "type": "string",
@@ -36,9 +38,9 @@
                         }, {
                             "$ref": "conveyance.schema.json#/definitions/hauler"
                         }, {
-                            "$ref": "facility.schema.json"
+                            "$ref": "facility.schema.json#/"
                         }, {
-                            "$ref": "reservoir.schema.json"
+                            "$ref": "reservoir.schema.json#/"
                         }]
                     }
                 }
@@ -50,6 +52,7 @@
         "observer": {
             "title": "observer",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "fullName": {
                     "type": "string"
@@ -66,6 +69,7 @@
         "method": {
             "title": "observation method",
             "type": "object",
+            "additionalProperties": false,
             "properties": {
                 "mode": {
                     "type": "string",
